@@ -1,3 +1,6 @@
+import math
+from typing import Union, Tuple
+
 import numpy as np
 
 MAXIMUM_ITERATIONS = 100
@@ -7,8 +10,20 @@ R_1, R_5, R_6, R_7, R_8, R_9, R_10 = np.float64(10), np.float64(0.193), np.float
                                      np.float64(3.40735 * 1e-5), np.float64(9.615 * 1e-7)
 
 
-def exercise_function(func_values: list) -> list:
-    x_1, x_2, x_3, x_4, x_5 = func_values
+def unwrap_matrix(values: np.matrix):
+    # return values.item(0, 0), values.item(0, 1), values.item(0, 2), values.item(0, 3), values.item(0, 4)
+    return values.item(0, 0), values.item(1, 0), values.item(2, 0), values.item(3, 0), values.item(4, 0)
+
+
+def get_values(func_values: Union[list, np.matrix]) -> Tuple[float, float, float, float, float]:
+    if type(func_values) is np.matrix:
+        return unwrap_matrix(func_values)
+    else:
+        return func_values[0], func_values[1], func_values[2], func_values[3], func_values[4]
+
+
+def exercise_function(func_values: Union[list, np.matrix]) -> list:
+    x_1, x_2, x_3, x_4, x_5 = get_values(func_values)
     first_function = x_1 * x_2 + x_1 - 3 * x_5
     second_function = 2 * x_1 * x_2 + x_1 + 3 * R_10 * x_2 ** 2 + x_2 * x_3 ** 2 + R_7 * x_2 * x_3 \
                       + R_9 * x_2 * x_4 + R_8 * x_2 - R_1 * x_5
@@ -21,7 +36,7 @@ def exercise_function(func_values: list) -> list:
 
 
 def jacobian_of_function(func_values: np.matrix):
-    x_1, x_2, x_3, x_4, x_5 = func_values
+    x_1, x_2, x_3, x_4, x_5 = get_values(func_values)
     return [
         [x_2 + 1, x_1, 0, 0, -3],
         [2 * x_2 + 1,
@@ -52,10 +67,35 @@ def newton(x: list, function: callable, jacobian: callable, tolerance: float):
     raise RuntimeError("Função não convergiu.")
 
 
+def broyden(x_0: np.matrix, function: callable, jacobian: callable, tolerance: float):
+    a_0 = np.matrix(jacobian(x_0))
+    v: np.matrix = np.matrix(function(x_0)).T
+    A = np.linalg.inv(a_0)
+    s = -A @ v
+    approximate_solution = x_0 + s
+    for i in range(int(MAXIMUM_ITERATIONS) - 1):
+        w = v
+        v = np.matrix(function(approximate_solution)).T
+        y = v - w
+        z = -A @ y
+        p = -s.T @ z
+        u_transposed = s.T @ A
+        A = A + (1 / p.item(0, 0)) * (s + z) * u_transposed
+        s = -A @ v
+        approximate_solution = approximate_solution + s
+        increment_norm = np.linalg.norm(s)
+        if increment_norm < tolerance:
+            print(f"A função convergiu com sucesso em {i + 1} iterações..")
+            return approximate_solution
+    raise RuntimeError("Função não convergiu.")
+
+
 def _main():
-    x_0 = [10., 10., 10., 10., 10.]
+    x_0 = np.matrix([10., 10., 10., 10., 10.]).T
     result = newton(x_0, exercise_function, jacobian_of_function, 1e-10)
     print(f"A solução para esse sistema de equações, utilizando o método de Newton, é: {result}.")
+    result = broyden(x_0, exercise_function, jacobian_of_function, 1e-10)
+    print(f"A solução para esse sistema de equações, utilizando o método de Broyden, é: {result}.")
 
 
 if __name__ == '__main__':
