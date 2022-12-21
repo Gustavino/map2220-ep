@@ -91,9 +91,11 @@ def broyden(x_0: np.matrix, function: callable, jacobian: callable, tolerance: f
 
 
 def _main():
-    x_0 = np.matrix([10., 10., 10., 10., 10.]).T
+    x_0 = [10., 10., 10., 10., 10.]
     result = newton(x_0, exercise_function, jacobian_of_function, 1e-10)
     print(f"A solução para esse sistema de equações, utilizando o método de Newton, é: {result}.")
+
+    x_0 = np.matrix([1., 30., 1., 1., 1.]).T
     result = broyden(x_0, exercise_function, jacobian_of_function, 1e-10)
     print(f"A solução para esse sistema de equações, utilizando o método de Broyden, é: {result}.")
 
