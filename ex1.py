@@ -81,28 +81,31 @@ def simulate_time_for_broyden():
 
     print(f"Os valores logados foram os seguintes: "
           f"{logger.return_specific_key_values(log_target)}")
-    print(f"O desvio padrão dos valores é: {np.std(logger.return_specific_key_values(log_target))}")
+    if log_target == BroydenLoggerKeys.time:
+        print(f"O desvio padrão dos valores é: {np.std(logger.return_specific_key_values(log_target))}")
     plotter.plot_y_key(log_target)
 
 
 def _main():
     x_0 = [10., 10., 10., 10., 10.]
+    x_0 = [1., 30., 1., 1., 1.]
     logger = Logger()
-    log_target = NewtonLoggerKeys.residual_norm
-    plotter = Plotter(logger)
-
+    # log_target = NewtonLoggerKeys.residual_norm
+    # plotter = Plotter(logger)
+    #
     result = newton(x_0, exercise_function, jacobian_of_exercise_function, 1e-10, logger)
     print(f"A solução para esse sistema de equações, utilizando o método de Newton, é: {result}.")
+    #
+    # print(f"Os valores logados foram os seguintes: "
+    #       f"{logger.return_specific_key_values(log_target)}")
+    # # print(f"O desvio padrão dos valores é: {np.std(logger.return_specific_key_values(log_target))}")
+    #
+    # plotter.plot_y_key(log_target)
 
-    print(f"Os valores logados foram os seguintes: "
-          f"{logger.return_specific_key_values(log_target)}")
-    # print(f"O desvio padrão dos valores é: {np.std(logger.return_specific_key_values(log_target))}")
-
-    plotter.plot_y_key(log_target)
-
-    # x_0 = np.matrix([1., 30., 1., 1., 1.]).T
-    # result = broyden(x_0, exercise_function, jacobian_of_exercise_function, 1e-10)
-    # print(f"A solução para esse sistema de equações, utilizando o método de Broyden, é: {result}.")
+    # x_0 = np.matrix([10., 10., 10., 10., 10.]).T
+    x_0 = np.matrix([1., 30., 1., 1., 1.]).T
+    result = broyden(x_0, exercise_function, jacobian_of_exercise_function, 1e-10)
+    print(f"A solução para esse sistema de equações, utilizando o método de Broyden, é: {result}.")
 
 
 if __name__ == '__main__':
