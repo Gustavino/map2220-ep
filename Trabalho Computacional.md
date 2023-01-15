@@ -5,7 +5,7 @@
     - [ ] Apresentar a solução estimada em cada iteração
     - [ ] Medir tempo computacional de procedimentos
         - [ ] Escrever como a medida foi feita e porque ela é confiável.
-        - [ ] Criar gráficos.
+        - [x] Criar gráficos.
 
 - [ ] Comentar código.
 
@@ -56,7 +56,7 @@ Animações com demonstração do método para uma variável:
 
 Note que, na animação acima, a partir de certo ponto $x = x_0$, o erro decresce muito em poucas iterações. 
 
-O algoritmo em Python pode ser encontrado no apêndice.
+O algoritmo em Python pode ser encontrado no <a href=https://github.com/Gustavino/map2220-ep>repositório do projeto</a>.
 
 ### Múltiplas variáveis
 
@@ -82,7 +82,7 @@ O processo iterativo para o caso de sistemas não lineares é o seguinte:
   fórmula de iteração:
  
 $$x^{(k)} = G(x^{(k-1)}) = x^{(k-1)} - J(x^{(k-1)})^{-1}F(x^{(k-1)})$$
- Este é o algoritmo iterativo utilizado para as aplicações-problema do projeto e seu código fonte em Python está no apêndice no final deste documento.
+ Este é o algoritmo iterativo utilizado para as aplicações-problema do projeto e seu código fonte em Python está localizado nesse <a href=https://github.com/Gustavino/map2220-ep>projeto</a>.
 
 * **Qual a importância do jacobiano para esse método?**
   
@@ -128,7 +128,7 @@ O método de Broyden é uma generalização para maiores dimensões do **método
   Isso acontece porque, em vez de calcular a inversa da matriz Jacobiana, o método de Broyden usa uma aproximação da matriz Jacobiana e atualiza essa 
   aproximação a cada iteração. Essas operações são de complexidade $O(n^2)$.
   
-O algoritmo implementando o método de Broyden está localizado no apêndice.
+O algoritmo implementando o método de Broyden está localizado no <a href=https://github.com/Gustavino/map2220-ep>repositório do projeto</a>.
 
 ## Diferenças finitas
 Diferenças finitas é uma técnica numérica utilizada para aproximar derivadas de uma função em um ponto específico. Ela consiste em utilizar a diferença entre o
@@ -154,19 +154,199 @@ As diferenças centrais têm como termo dominante do erro $O(n^2)$, portanto, é
 ## Item 1
 
 > a. Partindo de $\vec{x}_0=(10,10,10,10,10)$, encontrar a solução para o sistema de equação não-lineares usando o método de Newton. Analisar os resultados 
-> (solução estimada, resíduo, convergência e tempo computacional necessário para convergência).
+> (solução estimada, resíduo, convergência e tempo computacional necessário para convergência).  
 
-## APÊNDICE (COLOCAR ALGORITMOS)
+* **Tabela com a solução estimada por iteração até a convergência**:
+```python
+A função convergiu com sucesso em 11 iterações.
+A solução para esse sistema de equações, utilizando o método de Newton, é: [3.43023016e-03, 3.13264968e+01, 6.83504014e-02, 8.59528996e-01, 3.69624414e-02].
+Portanto, a solução encontrada é igual à solução conhecida e exposta pelo enunciado.
+╒═════════════╤═════════════╤══════════╤════════════╤═══════════╤════════════╕
+│   iteration │         x_1 │      x_2 │        x_3 │       x_4 │        x_5 │
+╞═════════════╪═════════════╪══════════╪════════════╪═══════════╪════════════╡
+│           0 │ 10          │ 10       │ 10         │ 10        │ 10         │
+├─────────────┼─────────────┼──────────┼────────────┼───────────┼────────────┤
+│           1 │  0.010652   │  9.99922 │  5.00103   │  5.03642  │  0.0364587 │
+├─────────────┼─────────────┼──────────┼────────────┼───────────┼────────────┤
+│           2 │  0.0100115  │ 10.0101  │  2.49921   │  2.59112  │  0.0367451 │
+├─────────────┼─────────────┼──────────┼────────────┼───────────┼────────────┤
+│           3 │  0.00998373 │ 10.0839  │  1.24338   │  1.43787  │  0.0368871 │
+├─────────────┼─────────────┼──────────┼────────────┼───────────┼────────────┤
+│           4 │  0.00968921 │ 10.4318  │  0.60636   │  0.975892 │  0.0369558 │
+├─────────────┼─────────────┼──────────┼────────────┼───────────┼────────────┤
+│           5 │  0.00850591 │ 11.8477  │  0.274174  │  0.866849 │  0.0369857 │
+├─────────────┼─────────────┼──────────┼────────────┼───────────┼────────────┤
+│           6 │  0.00541646 │ 16.7133  │  0.103992  │  0.860022 │  0.0369919 │
+├─────────────┼─────────────┼──────────┼────────────┼───────────┼────────────┤
+│           7 │  0.00292103 │ 27.6408  │  0.0602819 │  0.859724 │  0.0369765 │
+├─────────────┼─────────────┼──────────┼────────────┼───────────┼────────────┤
+│           8 │  0.00345584 │ 31.717   │  0.069604  │  0.859516 │  0.0369616 │
+├─────────────┼─────────────┼──────────┼────────────┼───────────┼────────────┤
+│           9 │  0.00343022 │ 31.3295  │  0.0683736 │  0.859529 │  0.0369624 │
+├─────────────┼─────────────┼──────────┼────────────┼───────────┼────────────┤
+│          10 │  0.00343023 │ 31.3265  │  0.0683504 │  0.859529 │  0.0369624 │
+├─────────────┼─────────────┼──────────┼────────────┼───────────┼────────────┤
+│          11 │  0.00343023 │ 31.3265  │  0.0683504 │  0.859529 │  0.0369624 │
+╘═════════════╧═════════════╧══════════╧════════════╧═══════════╧════════════╛
 
-1. NEWTON UMA VARIAVEL
+```  
 
-algoritmo para resolver uma equação de uma variável usando o método de Newton é o seguinte:
-1.  Escolha uma estimativa inicial x0 para a raiz da equação.
-2.  Calcule x1 usando a fórmula: x1 = x0 - f(x0) / f'(x0)
-3.  Repita os seguintes passos até que a precisão desejada seja atingida: a. Defina x0 como x1. b. Calcule x1 usando a fórmula: x1 = x0 - f(x0) / f'(x0)
+* **Resíduo**:
+O resíduo decresce a cada iteração, como esperado. Entretanto, há um aumento da ordem de $10^{-3}$ na 4.ª iteração, aumento insuficiente para fazer que método saia do domínio ou que o jacobiano torne-se singular.
+```python
+╒═════════════╤══════════════╤═══════════════╤═══════════════╤══════════════╤═══════════════╕
+│   iteration │          x_1 │           x_2 │           x_3 │          x_4 │           x_5 │
+╞═════════════╪══════════════╪═══════════════╪═══════════════╪══════════════╪═══════════════╡
+│           0 │  0.00778809  │ 249.971       │ 509.558       │ 49.2743      │ 279.424       │
+├─────────────┼──────────────┼───────────────┼───────────────┼──────────────┼───────────────┤
+│           1 │ -6.98369e-06 │  62.3814      │ 127.179       │ 11.9589      │  69.5689      │
+├─────────────┼──────────────┼───────────────┼───────────────┼──────────────┼───────────────┤
+│           2 │ -2.05242e-06 │  15.4399      │  31.4886      │  2.65997     │  17.0743      │
+├─────────────┼──────────────┼───────────────┼───────────────┼──────────────┼───────────────┤
+│           3 │ -0.000102444 │   3.68187     │   7.52092     │  0.426847    │   3.97372     │
+├─────────────┼──────────────┼───────────────┼───────────────┼──────────────┼───────────────┤
+│           4 │ -0.00167549  │   0.733343    │   1.51624     │  0.0237756   │   0.768202    │
+├─────────────┼──────────────┼───────────────┼───────────────┼──────────────┼───────────────┤
+│           5 │ -0.015032    │  -0.000452324 │   0.0707199   │  9.20702e-05 │   0.0201704   │
+├─────────────┼──────────────┼───────────────┼───────────────┼──────────────┼───────────────┤
+│           6 │ -0.0272687   │  -0.100986    │  -0.0925877   │  6.68228e-08 │  -0.073578    │
+├─────────────┼──────────────┼───────────────┼───────────────┼──────────────┼───────────────┤
+│           7 │  0.00217999  │   0.0117661   │   0.0147293   │  5.7485e-08  │   0.00957099  │
+├─────────────┼──────────────┼───────────────┼───────────────┼──────────────┼───────────────┤
+│           8 │  9.92994e-06 │   0.000134365 │   0.000228468 │  1.47587e-10 │   0.000124438 │
+├─────────────┼──────────────┼───────────────┼───────────────┼──────────────┼───────────────┤
+│           9 │ -2.67427e-11 │   2.63198e-08 │   5.28659e-08 │  1.46549e-14 │   2.64335e-08 │
+├─────────────┼──────────────┼───────────────┼───────────────┼──────────────┼───────────────┤
+│          10 │  0           │   1.33227e-15 │   2.44249e-15 │  0           │   1.33227e-15 │
+╘═════════════╧══════════════╧═══════════════╧═══════════════╧══════════════╧═══════════════╛
+```
 
-Onde f(x) é a equação original e f'(x) é a derivada da equação.
+![img.png](assets/1-newton-residual-norm.png)  
 
-2. newton multiplas variaveis
+* **Tempo estimado**:  
+O tempo estimado para a convergência, **em todas a 30 iterações utilizadas no teste**, foi da ordem de $10^{-4}$, com um baixíssimo desvio padrão. O pico inicial, demonstrado na imagem abaixo, deve-se ao "cold start" da aplicação. Na primeira iteração, o sistema operacional precisa realizar operações como inicializar variáveis e carregar bibliotecas e módulos.
 
-3. broyden
+```python
+O desvio padrão dos valores é: 6.301148004540966e-05
+O tempo máximo foi de 0.0007195000071078539 segundos
+O tempo mínimo foi de 0.00035799999022856355 segundos
+A média dos valores é: 0.0004876299974663804 segundos
+```
+
+![img.png](assets/1-newton-time.png)
+
+>b. Repetir o exercício (a) utilizando o método de Broyden.  
+
+### Adequação de domínio no método de Broyden:  
+No método de Broyden, mostrou-se necessário definir limites inferiores e superiores para o dominío da aplicação, visto que, com domínio livre e partindo de $x = (10, 10, 10, 10, 10)$, a aplicação não convergia.  
+Dessa forma, foi desenvolvido um script para encontrar os limites inferiores e superiores que minimizavam o número de iterações necessárias para atingir o critério de convergência.  
+Os valores que melhor otimizam o processo foram os seguintes:
+    * Limitante **superior** do domínio de Broyden: $44$
+    * Limitante **inferior** do domínio de Broyden: $0.00271$
+    * Número de **iterações** para atingir a convergência utilizando os limitantes: $65$  
+
+Portanto, os dados apresentados nos exercícios abaixo utilizam esses valores como limitantes de tal forma que o método tenha convergência garantida.
+
+
+* **Tabela com a solução estimada por iteração até a convergência**:  
+A tabela não será exibida, visto que teria 65 linhas (dadas as 65 iterações). De qualquer forma, é nítido que o processo de Broyden requer muito mais iterações que o método de Newton, principalmente devido à limitação do domínio em iterações problemáticas.
+```python  
+    A função convergiu com sucesso em 65 iterações.
+    A solução para esse sistema de equações, utilizando o método de Newton, é: [3.43023016e-03], [3.13264968e+01], [6.83504014e-02], [8.59528996e-01], [3.69624414e-02].
+```
+A expectativa teórica é de que o método de Broyden seja mais **rápido, em tempo,** que o método de Newton, devido à não inversão de matriz no processo iterativo. Entretanto, nada é dito sobre a quantidade esperada de iterações dos métodos.
+
+
+* **Resíduo**:  
+Novamente, o resíduo decresce a cada iteração, como esperado. Todavia, há um pico na 37.ª iteração que caracteriza o maior distanciamento, durante o processo, da solução estimada em relação à solução verdadeira. Nesse ponto, as salvaguardas inseridas no domínio impedem que o processo divirja.
+```python
+A função convergiu com sucesso em 65 iterações.
+```
+
+![img.png](assets/1-broyden-residual-norm.png)
+
+* **Tempo estimado**:  
+Tempo estimado em 30 iterações do método de Broyden.
+```python
+O desvio padrão dos valores é: 0.0008317405963524958
+O tempo máximo foi de 0.011727999954018742 segundos
+O tempo mínimo foi de 0.007786300033330917 segundos
+A média dos valores é: 0.009072460007155314 segundos
+```
+
+![img.png](assets/1-broyden-time.png)
+
+>c. Comparar os resultados e comentá-los levando em contas as expectativas teóricas.  
+
+O resultado esperado, baseando-se no comportamento assintótico dos métodos, como descrito na seção de _Fundamentação Teórica_, era de que o método de Broyden fosse mais rápido (em tempo) que o método de Newton.  
+Entretanto, isso não se confirmou, devido ao comportamento do método de Broyden gerar a necessidade de limitação do domínio, o que causou uma maior demora para sua conclusão.  
+Comparando os tempos médios de execução:
+
+* Tempo médio de Newton: 0.0004876299974663804 segundos
+* Tempo médio de Broyden: 0.009072460007155314 segundos
+* **Relação**: Broyden tem um tempo médio de aproximadamente **1760% maior** que o tempo médio de Newton.
+
+Além disso, o desvio padrão do tempo de Broyden é também muito maior que o desvio padrão do tempo de Newton (**1220% maior**).  
+Isso ocorre porque, com mais iterações (e mais tempo de execução), são necessárias mais operações de ponto flutuante, incorrendo em mais chamadas à FPU (floating-point unit) ou ao sub-processador especializado nessas operações.  
+Portanto, há maior dependência do sistema operacional, justificando a maior variabilidade.  
+
+Ambos convergiram ao valor esperado com a precisão especificada ($10^{-10}$), entretanto, o método de Broyden mostrou-se como mais um exemplo de *trade-off*, onde ganha-se ao não ter de inverter a matriz ou resolver um complexo sistema linear, mas perde-se na abrangência do domínio.
+
+## Item 2  
+
+>a. Repetir o problema anterior, utilizando o método de Newton, calculando a Jacobiana pelo método de diferenças finitas por expressões de 1ª e 2ª ordem.
+
+### Simulação para encontrar o passo ótimo  
+Ao calcular a jacobiana por diferenças finitas, necessita-se especificar um tamanho, convencionado como $h$, para ser utilizado nas aproximações das derivadas.  
+Entretanto, o passo $h$ ótimo para uma aplicação depende da função que está sendo utilizada.  
+Visto que o enunciado não recomendou um valor de $h$, mostrou-se necessário simular os processos de Newton e Broyden com difererentes valores de $h$ de modo a entender qual valor reduziria mais o número de iterações.  
+Sendo assim, os valores de $h$ ótimos, para as diferenças finitas de primeira e segunda ordem no método de Newton foram:
+$$h^*_{\text{First order}} = 10^{-6}$$
+$$h^*_{\text{Second order}} = 10^{-6}$$  
+
+Esses serão os valores de $h$ ou $step$ utilizados nas simulações do item 2, dado que a jacobiana depende desses valores.
+
+* **Tabela com a solução estimada por iteração até a convergência**:  
+Para ambas as formas de aproximação de derivada, 1.ª ordem (_Forward differences_) e 2.ª ordem (_Centered differences_), a convergência foi a mesma:
+```python  
+    A função convergiu com sucesso em 11 iterações.
+    A solução para esse sistema de equações, utilizando o método de Newton, é: [3.43023016e-03], [3.13264968e+01], [6.83504014e-02], [8.59528996e-01], [3.69624414e-02].
+```
+Uma tabela também é gerada como saída do programa, no entanto, omitiu-a-se para manter a simplicidade do documento. A tabela pode ser rapidamente gerada e examinada utilizando o programa contido nesse repositório.
+
+
+* **Resíduo**:  
+No caso de Newton, novamente, não há diferenças nos resultados ao mudar o método aproximador das derivadas contidas no jacobiano. Na tabela exibida pelo programa, pode-se encontrar pequenas diferenças na **quarta casa decimal** de **algumas** variáveis em **algumas** iterações, como se vê a seguir:
+```python
+Order: Order.FIRST.
+A função convergiu com sucesso em 11 iterações.
+╒═════════════╤══════════════╤═══════════════╤═══════════════╤══════════════╤═══════════════╕
+│   iteration │          x_1 │           x_2 │           x_3 │          x_4 │           x_5 │
+╞═════════════╪══════════════╪═══════════════╪═══════════════╪══════════════╪═══════════════╡
+│           0 │  0.00778396  │ 249.971       │ 509.558       │ 49.2743      │ 279.424       │
+├─────────────┼──────────────┼───────────────┼───────────────┼──────────────┼───────────────┤
+│           1 │ -6.97981e-06 │  62.3815      │ 127.179       │ 11.9589      │  69.5689      │
+
+...
+
+Order: Order.SECOND.
+A função convergiu com sucesso em 11 iterações.
+╒═════════════╤══════════════╤═══════════════╤═══════════════╤══════════════╤═══════════════╕
+│   iteration │          x_1 │           x_2 │           x_3 │          x_4 │           x_5 │
+╞═════════════╪══════════════╪═══════════════╪═══════════════╪══════════════╪═══════════════╡
+│           0 │  0.00778849  │ 249.971       │ 509.558       │ 49.2743      │ 279.424       │
+├─────────────┼──────────────┼───────────────┼───────────────┼──────────────┼───────────────┤
+│           1 │ -6.98422e-06 │  62.3814      │ 127.179       │ 11.9589      │  69.5689      │
+```
+
+Na tabela acima enxergam-se pequenas diferenças nos valores de $x_1$ na primeira iteração e de $x_1$ e $x_2$ na segunda iteração.
+
+
+* **Tempo estimado**:  
+Tempo estimado em 30 iterações do método de Broyden.
+```python
+O desvio padrão dos valores é: 0.0008317405963524958
+O tempo máximo foi de 0.011727999954018742 segundos
+O tempo mínimo foi de 0.007786300033330917 segundos
+A média dos valores é: 0.009072460007155314 segundos
+```
