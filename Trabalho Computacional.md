@@ -290,7 +290,7 @@ Além disso, o desvio padrão do tempo de Broyden é também muito maior que o d
 Isso ocorre porque, com mais iterações (e mais tempo de execução), são necessárias mais operações de ponto flutuante, incorrendo em mais chamadas à FPU (floating-point unit) ou ao sub-processador especializado nessas operações.  
 Portanto, há maior dependência do sistema operacional, justificando a maior variabilidade.  
 
-Ambos convergiram ao valor esperado com a precisão especificada ($10^{-10}$), entretanto, o método de Broyden mostrou-se como mais um exemplo de *trade-off*, onde ganha-se ao não ter de inverter a matriz ou resolver um complexo sistema linear, mas perde-se na abrangência do domínio.
+Ambos convergiram ao valor esperado com a precisão de $10^{-10}$, entretanto, o método de Broyden mostrou-se como mais um exemplo de *trade-off*, onde ganha-se ao não ter de inverter a matriz ou resolver um complexo sistema linear, mas perde-se na abrangência do domínio.
 
 ## Item 2  
 
