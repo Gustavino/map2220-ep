@@ -36,12 +36,15 @@ def simulate_time_for_broyden():
         log_target = BroydenLoggerKeys.time
         x_0 = [10., 10., 10., 10., 10.]
 
-        # todo: comentar no relatorio de onde vieram esses valores
+        print(f"Order: {order}.")
         jacobian = partial(jacobian_with_finite_differences, exercise_function, order, step)
         time_stress(broyden, logger, 30, np.matrix(x_0).T, exercise_function, jacobian, 1e-10, logger, provider)
 
-        print(f"O desvio padrão dos valores é: {np.std(logger.return_specific_key_values(log_target))}")
-        print(f"A média dos valores é: {np.mean(logger.return_specific_key_values(log_target))}")
+        values = logger.return_specific_key_values(log_target)
+        print(f"O desvio padrão dos valores é: {np.std(values)} segundos")
+        print(f"A média dos valores é: {np.mean(values)} segundos")
+        print(f"O tempo máximo foi de {np.max(values)} segundos")
+        print(f"O tempo mínimo foi de {np.min(values)} segundos")
         plotter.plot_y_key(log_target, "time (s)", graph_title)
         build_table(BroydenLoggerKeys.time, logger)
 
@@ -55,6 +58,7 @@ def estimate_solution():
         jacobian = partial(jacobian_with_finite_differences, exercise_function, order, step)
         estimated_solution = broyden(np.matrix(x_0).T, exercise_function, jacobian, 1e-10, logger, provider)
 
+        print(f"Order: {order}.")
         print(f"A solução para esse sistema de equações, utilizando o método de Newton, é: {estimated_solution}.")
 
         build_table(BroydenLoggerKeys.x, logger)
@@ -75,19 +79,18 @@ def estimate_residual():
         jacobian = partial(jacobian_with_finite_differences, exercise_function, order, step)
         broyden(np.matrix(x_0).T, exercise_function, jacobian, 1e-10, logger, provider)
 
-        plotter.plot_y_key(log_target, graph_title, pyplot_modifiers=plot_modifier)
+        plotter.plot_y_key(log_target, unit=log_target, graph_title=graph_title, pyplot_modifiers=plot_modifier)
         build_table(BroydenLoggerKeys.residual, logger)
 
 
-# todo: maybe create table.
 def simulate_domain_limits_for_broyden():
     maximum_values = [i for i in range(30, 100)]
     minimum_values = [i for i in np.arange(1e-5, 3e-3, 1e-4)]
 
-    combinations = itertools.product(maximum_values, minimum_values)
-    results = []
     for order in [Order.FIRST, Order.SECOND]:
-        step, _ = _get_execution_data(order)
+        combinations = itertools.product(maximum_values, minimum_values)
+        step, _, _ = _get_execution_data(order)
+        results = []
         for index, combination in enumerate(combinations):
             maximum, minimum = combination
             provider = DomainProvider(maximum=maximum, minimum=minimum)
@@ -104,34 +107,18 @@ def simulate_domain_limits_for_broyden():
                 pass
 
         results.sort(reverse=True)
+        print(order)
         print(results)
+        print("\n")
 
 
 def simulate_jacobian_steps():
-    # todo: delete
-    # def plot_modifier(pyplot):
-    #     pyplot.xticks(rotation=60, fontsize=7)
-    #
-    # def y_values_unwrapper(values: list):
-    #     filtered = filter(lambda value: type(value['iterations']) is not str, values)
-    #     return list(map(lambda entry: entry['iterations'], filtered))
-    #
-    # def x_values_unwrapper(values: list):
-    #     filtered = filter(lambda value: type(value['iterations']) is not str, values)
-    #     return list(map(lambda entry: entry['step'], filtered))
-
     x_0 = [10., 10., 10., 10., 10.]
     provider = DomainProvider(maximum=OPTIMAL_BROYDEN_MAXIMUM, minimum=OPTIMAL_BROYDEN_MINIMUM)
     steps = [1e-16 * (10 ** i) for i in range(0, 18)]
-    # todo: delete
-    # graph_title_template = 'Broyden - {} - Number of iterations'
     for order in [Order.FIRST, Order.SECOND]:
         print(f"Starting for order: {order}")
         logger = Logger()
-        # todo: delete
-        # plotter = Plotter(logger)
-        # graph_title = graph_title_template.format('Forward differences') if order == Order.FIRST else graph_title_template.format(
-        #     'Centered differences')
         for step in steps:
             try:
                 jacobian = partial(jacobian_with_finite_differences, exercise_function, order, step)
@@ -145,11 +132,6 @@ def simulate_jacobian_steps():
                 logger.log_value(BroydenLoggerKeys.number_of_iterations, {"step": step, "iterations": "!ERROR: DEGENERATED"})
 
         build_table(BroydenLoggerKeys.number_of_iterations, logger)
-
-        # todo: delete
-        # plotter.plot_y_key(BroydenLoggerKeys.number_of_iterations, unit='iterations', graph_title=graph_title,
-        #                    pyplot_modifiers=plot_modifier,
-        #                    y_values_unwrapper=y_values_unwrapper, x_values_unwrapper=x_values_unwrapper)
 
 
 # todo: remove this main.

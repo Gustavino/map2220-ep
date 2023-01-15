@@ -248,7 +248,7 @@ Os valores que melhor otimizam o processo foram os seguintes:
 Portanto, os dados apresentados nos exercícios abaixo utilizam esses valores como limitantes de tal forma que o método tenha convergência garantida.
 
 
-* **Tabela com a solução estimada por iteração até a convergência**:  
+* **Solução estimada**:  
 A tabela não será exibida, visto que teria 65 linhas (dadas as 65 iterações). De qualquer forma, é nítido que o processo de Broyden requer muito mais iterações que o método de Newton, principalmente devido à limitação do domínio em iterações problemáticas.
 ```python  
     A função convergiu com sucesso em 65 iterações.
@@ -294,19 +294,19 @@ Ambos convergiram ao valor esperado com a precisão de $10^{-10}$, entretanto, o
 
 ## Item 2  
 
->a. Repetir o problema anterior, utilizando o método de Newton, calculando a Jacobiana pelo método de diferenças finitas por expressões de 1ª e 2ª ordem.
+>a. Repetir o problema anterior, utilizando o método de Newton, calculando a Jacobiana pelo método de diferenças finitas por expressões de 1.ª e 2.ª ordem.
 
 ### Simulação para encontrar o passo ótimo  
 Ao calcular a jacobiana por diferenças finitas, necessita-se especificar um tamanho, convencionado como $h$, para ser utilizado nas aproximações das derivadas.  
 Entretanto, o passo $h$ ótimo para uma aplicação depende da função que está sendo utilizada.  
 Visto que o enunciado não recomendou um valor de $h$, mostrou-se necessário simular os processos de Newton e Broyden com difererentes valores de $h$ de modo a entender qual valor reduziria mais o número de iterações.  
 Sendo assim, os valores de $h$ ótimos, para as diferenças finitas de primeira e segunda ordem no método de Newton foram:  
-$$\text{First order: } h^\*_1 = 10^{-6}$$   
+$$\text{First order: } h^\*_1 = 10^{-6}$$
 $$\text{Second order: } h^\*_2 = 10^{-6}$$    
 
 Esses serão os valores de $h$ ou $step$ utilizados nas simulações do item 2, dado que a jacobiana depende desses valores.
 
-* **Tabela com a solução estimada por iteração até a convergência**:  
+* **Solução estimada**:  
 Para ambas as formas de aproximação de derivada, 1.ª ordem (_Forward differences_) e 2.ª ordem (_Centered differences_), a convergência foi a mesma:
 ```python  
     A função convergiu com sucesso em 11 iterações.
@@ -340,13 +340,195 @@ A função convergiu com sucesso em 11 iterações.
 ```
 
 Na tabela acima enxergam-se pequenas diferenças nos valores de $x_1$ na primeira iteração e de $x_1$ e $x_2$ na segunda iteração.
+Os gráficos serão omitidos por serem idênticos, mas ainda podem ser visualizados executando a aplicação.
 
 
 * **Tempo estimado**:  
-Tempo estimado em 30 iterações do método de Broyden.
+Tempo estimado em 30 iterações do método de Newton, para ambas as diferenças finitas.
 ```python
-O desvio padrão dos valores é: 0.0008317405963524958
-O tempo máximo foi de 0.011727999954018742 segundos
-O tempo mínimo foi de 0.007786300033330917 segundos
-A média dos valores é: 0.009072460007155314 segundos
+Order: Order.FIRST.
+
+O desvio padrão dos valores é: 0.0004592098392270207 segundos
+A média dos valores é: 0.004692006664117798 segundos
+O tempo máximo foi de 0.005797900026664138 segundos
+O tempo mínimo foi de 0.004005199996754527 segundos
 ```
+
+![img.png](assets/2-newton-first-order-time.png)
+
+```python
+Order: Order.SECOND.
+
+O desvio padrão dos valores é: 0.0014413670571175189 segundos
+A média dos valores é: 0.00425199333888789 segundos
+O tempo máximo foi de 0.009693500003777444 segundos
+O tempo mínimo foi de 0.003562700003385544 segundos
+```
+
+![img.png](assets/2-newton-second-order-time.png)  
+
+É explícito, pelos gráficos, a maior variabilidade das diferenças centrais, mesmo que os programas utilizando estas tenham uma média menor de tempo, o que é coerente: as diferenças centrais utilizam dois pontos para aproximarem a derivada, portanto, tendem a ser mais precisas (como será observado no Método de Broyden) e convergirem mais rapidamente.  
+
+>b. Repetir o problema usando o método de Broyden.  
+
+### Limites ótimos do domínio:
+
+#### Primeira ordem
+* Limitante **superior** do domínio de Broyden: $42$
+* Limitante **inferior** do domínio de Broyden: $0.00271$
+* Número de **iterações** para atingir a convergência utilizando os limitantes: $68$
+
+#### Segunda ordem
+* Limitante **superior** do domínio de Broyden: $44$ 
+* Limitante **inferior** do domínio de Broyden: $0.00271$
+* Número de **iterações** para atingir a convergência utilizando os limitantes: $65$
+
+### Simulação para encontrar o passo ótimo  
+Os passos ótimos encontrados para o método de Broyden foram:  
+$$\text{First order: } h^\*_1 = 10^{-6}$$
+$$\text{Second order: } h^\*_2 = 10^{-4}$$    
+
+Para chegar a esses números, foram testados $18$ valores diferentes em cada tipo de diferença finita:
+
+1. Primeira ordem:
+```python
+│   iteration │   step size │ number of iterations    │
+╞═════════════╪═════════════╪═════════════════════════╡
+│           0 │      1e-16  │ !ERROR: Singular matrix │
+├─────────────┼─────────────┼─────────────────────────┤
+│           1 │      1e-15  │ !ERROR: Singular matrix │
+├─────────────┼─────────────┼─────────────────────────┤
+│           2 │      1e-14  │ 114                     │
+├─────────────┼─────────────┼─────────────────────────┤
+│           3 │      1e-13  │ 580                     │
+├─────────────┼─────────────┼─────────────────────────┤
+│           4 │      1e-12  │ 848                     │
+├─────────────┼─────────────┼─────────────────────────┤
+│           5 │      1e-11  │ 139                     │
+├─────────────┼─────────────┼─────────────────────────┤
+│           6 │      1e-10  │ 290                     │
+├─────────────┼─────────────┼─────────────────────────┤
+│           7 │      1e-09  │ 451                     │
+├─────────────┼─────────────┼─────────────────────────┤
+│           8 │      1e-08  │ 124                     │
+├─────────────┼─────────────┼─────────────────────────┤
+│           9 │      1e-07  │ 141                     │
+├─────────────┼─────────────┼─────────────────────────┤
+│          10 │      1e-06  │ 83                      │
+├─────────────┼─────────────┼─────────────────────────┤
+│          11 │      1e-05  │ 235                     │
+├─────────────┼─────────────┼─────────────────────────┤
+│          12 │      0.0001 │ 699                     │
+├─────────────┼─────────────┼─────────────────────────┤
+│          13 │      0.001  │ 537                     │
+├─────────────┼─────────────┼─────────────────────────┤
+│          14 │      0.01   │ 95                      │
+├─────────────┼─────────────┼─────────────────────────┤
+│          15 │      0.1    │ 410                     │
+├─────────────┼─────────────┼─────────────────────────┤
+│          16 │      1      │ 472                     │
+├─────────────┼─────────────┼─────────────────────────┤
+│          17 │     10      │ 426                     │
+```
+
+2. Segunda ordem:
+```python
+═════════════╤═════════════╤═════════════════════════╕
+│   iteration │   step size │ number of iterations    │
+╞═════════════╪═════════════╪═════════════════════════╡
+│           0 │      1e-16  │ !ERROR: Singular matrix │
+├─────────────┼─────────────┼─────────────────────────┤
+│           1 │      1e-15  │ !ERROR: Singular matrix │
+├─────────────┼─────────────┼─────────────────────────┤
+│           2 │      1e-14  │ 148                     │
+├─────────────┼─────────────┼─────────────────────────┤
+│           3 │      1e-13  │ 422                     │
+├─────────────┼─────────────┼─────────────────────────┤
+│           4 │      1e-12  │ 848                     │
+├─────────────┼─────────────┼─────────────────────────┤
+│           5 │      1e-11  │ 770                     │
+├─────────────┼─────────────┼─────────────────────────┤
+│           6 │      1e-10  │ 322                     │
+├─────────────┼─────────────┼─────────────────────────┤
+│           7 │      1e-09  │ !ERROR: DEGENERATED     │
+├─────────────┼─────────────┼─────────────────────────┤
+│           8 │      1e-08  │ 84                      │
+├─────────────┼─────────────┼─────────────────────────┤
+│           9 │      1e-07  │ 130                     │
+├─────────────┼─────────────┼─────────────────────────┤
+│          10 │      1e-06  │ 72                      │
+├─────────────┼─────────────┼─────────────────────────┤
+│          11 │      1e-05  │ 90                      │
+├─────────────┼─────────────┼─────────────────────────┤
+│          12 │      0.0001 │ 65                      │
+├─────────────┼─────────────┼─────────────────────────┤
+│          13 │      0.001  │ 65                      │
+├─────────────┼─────────────┼─────────────────────────┤
+│          14 │      0.01   │ 65                      │
+├─────────────┼─────────────┼─────────────────────────┤
+│          15 │      0.1    │ 65                      │
+├─────────────┼─────────────┼─────────────────────────┤
+│          16 │      1      │ 65                      │
+├─────────────┼─────────────┼─────────────────────────┤
+│          17 │     10      │ 65                      │
+╘═════════════╧═════════════╧═════════════════════════╛
+```
+
+Como dito no item a), as diferenças centrais têm mais informação e, portanto, são menos sensiveis ao tamanho do passo.
+
+* **Solução estimada**:  
+1. Primeira ordem:
+```python
+A função convergiu com sucesso em 68 iterações.
+Order: Order.FIRST.
+A solução para esse sistema de equações, utilizando o método de Newton, é: [3.43023016e-03], [3.13264968e+01], [6.83504014e-02], [8.59528996e-01], [3.69624414e-02]
+```
+2. Segunda ordem:
+```python  
+A função convergiu com sucesso em 65 iterações.
+Order: Order.SECOND.
+A solução para esse sistema de equações, utilizando o método de Newton, é: [3.43023016e-03], [3.13264968e+01], [6.83504014e-02], [8.59528996e-01], [3.69624414e-02]
+```
+
+* **Resíduo**:  
+Como comentado no caso de Newton, as _Centered differences_ têm mais informação sobre o ponto cuja derivada está sendo aproximada, portanto, o método tende a variar menos do valor real da derivada.  
+Dessa forma, o comportamento evidenciado nos gráficos é esperado: as _Forward differences_ divergem mais durante o processo iterativo.
+1. Primeira ordem:
+![img.png](assets/2-broyden-first-order-residual.png)
+2. Segunda ordem:
+![img.png](assets/2-broyden-second-order-residual.png)
+
+
+* **Tempo estimado**:  
+Tempo estimado em 30 iterações do método de Broyden, para ambas as diferenças finitas.
+```python
+Order: Order.FIRST.
+
+O desvio padrão dos valores é: 0.0007350003606111309 segundos
+A média dos valores é: 0.009400230005849153 segundos
+O tempo máximo foi de 0.010994000011123717 segundos
+O tempo mínimo foi de 0.008306800038553774 segundos
+```
+
+![img.png](assets/2-broyden-first-order-time.png)
+
+```python
+Order: Order.SECOND.
+
+O desvio padrão dos valores é: 0.0006409476804390651 segundos
+A média dos valores é: 0.008798190004502734 segundos
+O tempo máximo foi de 0.010127699992153794 segundos
+O tempo mínimo foi de 0.0077892999979667366 segundos
+```
+
+![img.png](assets/2-broyden-second-order-time.png)
+
+>c. Comparar os resultados e comentá-los levando em contas as expectativas teóricas.  
+
+Os resultados são coerentes com as expectativas:
+1. As aproximações de segunda ordem (_Centered differences_) são melhores aproximações para a jacobiana, pois fazer os métodos iterativos convergirem mais rapidamente e são menos sensíveis ao tamanho $h$ do passo utilizado.
+2. O tempo médio de Newton continua menor, dada a não-necessidade de limitação no domínio.
+3. As diferenças de primeira ordem (_Forward differences_) têm uma menor variação no tempo de seu cálculo, visto que realizam menos operação de ponto flutuante.  
+
+## Item 3
+

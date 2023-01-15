@@ -32,9 +32,12 @@ def simulate_time_for_newton():
         jacobian = partial(jacobian_with_finite_differences, exercise_function, order, step)
         time_stress(newton, logger, 30, x_0, exercise_function, jacobian, 1e-10, logger)
 
-        print(f"O desvio padrão dos valores é: {np.std(logger.return_specific_key_values(log_target))}")
-        print(f"A média dos valores é: {np.mean(logger.return_specific_key_values(log_target))}")
-        plotter.plot_y_key(log_target, graph_title)
+        values = logger.return_specific_key_values(log_target)
+        print(f"O desvio padrão dos valores é: {np.std(values)}")
+        print(f"A média dos valores é: {np.mean(values)}")
+        print(f"O tempo máximo foi de {np.max(values)} s")
+        print(f"O tempo mínimo foi de {np.min(values)} s")
+        plotter.plot_y_key(log_target, unit='time (s)', graph_title=graph_title)
         build_table(NewtonLoggerKeys.time, logger)
 
 
@@ -90,4 +93,4 @@ def simulate_jacobian_steps():
 
 # todo: remove this  main
 if __name__ == '__main__':
-    estimate_residual()
+    simulate_time_for_newton()
