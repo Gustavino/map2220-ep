@@ -1,3 +1,6 @@
+from constants import NewtonLoggerKeys, BroydenLoggerKeys
+
+
 class Logger:
     def __init__(self):
         self.entries = []
@@ -6,6 +9,6 @@ class Logger:
         entry = {variable_name: value}
         self.entries.append(entry)
 
-    def return_specific_key_values(self, key: str):
+    def return_specific_key_values(self, key: NewtonLoggerKeys | BroydenLoggerKeys):
         filtered = filter(lambda entry: list(entry.keys())[0] == key, self.entries)
         return list(map(lambda entry: list(entry.values())[0], filtered))
