@@ -532,3 +532,89 @@ Os resultados são coerentes com as expectativas:
 
 ## Item 3
 
+Dado o seguinte sistema de equações do enunciado:
+$$
+\begin{equation}
+
+x_1^2+x_3^2=1
+\end{equation}
+
+$$
+(2)$x_2^2+x_4^2=1$
+(3)$x_5x_1x_3^2+x_6x_2x_4^2=0$
+(4)$x_5x_1^2x_3+x_6x_2^2x_4=0$
+(5)$x_5x_3^3+x_6x_4^3=0$
+(6)$x_5x_1^3+x_6x_2^3=0$
+Com isso temos as funções:  
+$f_1(x) = x_1^2+x_3^2-1 = 0$
+$f_2(x) = x_2^2+x_4^2-1 = 0$
+$f_3(x) = x_5x_1x_3^2+x_6x_2x_4^2 = 0$
+$f_4(x) = x_5x_1^2x_3+x_6x_2^2x_4 = 0$
+$f_5(x) = x_5x_3^3+x_6x_4^3 = 0$
+$f_6(x) = x_5x_1^3+x_6x_2^3 = 0$
+Com Jacobiano:  
+$$
+\frac {\partial f(x)}{\partial x_i} =   
+\begin{bmatrix}  
+2x_1 & 0 & 2x_3 & 0 & 0 & 0 \\  
+0 & 2x_2 & 0 & 2x_4 & 0 & 0 \\  
+x_5x_3^2 & x_6x_4^2 & 2x_5x_1x_3 & 2x_6x_2x_4 & x_1x_3^2 & x_2x_4^2 \\  
+2x_5x_1x_3 & 2x_6x_2x_4 & x_5x_1^2 & x_6x_2^2 & x_1^2x_3 & x_2^2x_4 \\  
+0 & 0 & 2x_5x_3 & 2x_6x_4 & x_3^3 & x_4^3 \\  
+x_5x1^2 & x_6x2^2 & 0 & 0 & x_1^3 & x_2^3   
+\end{bmatrix}  
+$$
+Inicialmente olharemos os intervalos os valores possiveis para as variaveis.  
+Por (1) e (2) temos dois circulos de raio 1 logo:  
+$x_1 \in [-1,1]$
+$x_2 \in [-1,1]$
+$x_3 \in [-1,1]$
+$x_4 \in [-1,1]$
+Nos caso demais $x_5 \in \mathbb{R}$ e $x_6 \in \mathbb{R}$.  
+Para podermos executar o método de Newton ou Broyden precisamos analisar os caso que impossibilitam a matrix de ser inversível.
+* Caso 1: se $x_1=0$.
+  $x_3^2 = 1$
+  $x_2^2+x_4^2 = 1$
+  $x_6x_2x_4^2 = 0$
+  $x_6x_2^2x_4 = 0$
+  $x_5 = \pm x_6x_4^3$
+  $x_6x_2^3 = 0$
+  Então, temos as seguintes soluções:
+  Se $x_2=0$, então $x = (0, 0, \pm 1, \pm 1, \pm x_6, x_6 )$
+  Se $x_4=0$, então $x = (0, \pm 1, \pm 1, 0, 0, 0 )$
+  Se $x_6=0$, então $x = (0, x_2, \pm 1, \pm \sqrt{1-x_2}, 0, 0 )$
+
+* Caso 2: se $x_2=0$.
+  $x_1^2+x_3^2 = 1$
+  $x_4^2 = \pm 1$
+  $x_5x_1x_3^2 = 0$
+  $x_5x_1^2x_3 = 0$
+  $x_6 = \pm x_5x_3^3$
+  $x_5x_1^3 = 0$
+  Então, temos as seguintes soluções:
+  Se $x_1=0$, então $x = (0, 0, \pm 1, \pm 1, \pm x_5, x_5 )$
+  Se $x_3=0$, então $x = (\pm 1, 0, 0, \pm 1, 0, 0 )$
+  Se $x_5=0$, então $x = (x_1, 0, \pm \sqrt{1-x_1}, \pm 1, 0, 0 )$
+
+* Caso 3: se $x_5=0$.
+  $x_1^2+x_3^2-1 = 0$
+  $x_2^2+x_4^2-1 = 0$
+  $x_6x_2x_4^2 = 0$
+  $x_6x_2^2x_4 = 0$
+  $x_6x_4^3 = 0$
+  $x_6x_2^3 = 0$
+  Os casos $x_1 = 0$ ou $x_2 = 0$ ou $x_3 = 0$ ou $x_4 = 0$, já foram cobertos anteriormente restando somente:  
+  Se $x_6=0$, então $x = (x_1, x_2, \pm \sqrt{1-x_1}, \pm \sqrt{1-x_2}, 0, 0 )$
+  Com isso nos restas achar as soluções $x \neq 0$ que estejam no interior do circulo das funcoes (1) e (2), aí ja poderemos utilizar Newton para achamos as soluções:  
+  Multiplicando por 3 $f_3$ e $f_4$, e somando $f_3$, $f_4$, $f_5$, $f_6$ temos  
+  $x_5(x_1+x_3)^3+x_6(x_1+x_3)^3 =0$
+  $x = (x_1, x_2, \pm \sqrt{1-x_1}, \pm \sqrt{1-x_2}, x_5, \pm x5 \frac {(x_1+x_3)^3}{(x_2+x_4)^3}  )$
+  onde   
+  $x_1 \notin ]-1,1[$ e $x_1 \neq 0$
+  $x_2 \notin ]-1,1[$ e $x_3 \neq 0$
+  $x_5 \in \mathbb{R}$ e $x_5 \neq 0$
+  Outra maneira de resolver o sistema, pode se trocar o método de Newton pelo de Ponto Fixo pois nao depende do Jacobiano para descobrir, teria pior performance porém não precisaríamos nos preocupar se o Jocabiano é inversível ou não
+
+![[Pasted image 20221228180205.png]]
+
+![[Pasted image 20221228180228.png]]
