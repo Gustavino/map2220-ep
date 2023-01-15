@@ -301,8 +301,8 @@ Ao calcular a jacobiana por diferenças finitas, necessita-se especificar um tam
 Entretanto, o passo $h$ ótimo para uma aplicação depende da função que está sendo utilizada.  
 Visto que o enunciado não recomendou um valor de $h$, mostrou-se necessário simular os processos de Newton e Broyden com difererentes valores de $h$ de modo a entender qual valor reduziria mais o número de iterações.  
 Sendo assim, os valores de $h$ ótimos, para as diferenças finitas de primeira e segunda ordem no método de Newton foram:  
-$$h^*_{\text{First order}} = 10^{-6}$$   
-$$h^*_{\text{Second order}} = 10^{-6}$$    
+$$\text{First order: } h^*_1 = 10^{-6}$$   
+$$\text{Second order: } h^*_2 = 10^{-6}$$    
 
 Esses serão os valores de $h$ ou $step$ utilizados nas simulações do item 2, dado que a jacobiana depende desses valores.
 
