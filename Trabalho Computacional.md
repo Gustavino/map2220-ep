@@ -241,9 +241,9 @@ A média dos valores é: 0.0004876299974663804 segundos
 No método de Broyden, mostrou-se necessário definir limites inferiores e superiores para o dominío da aplicação, visto que, com domínio livre e partindo de $x = (10, 10, 10, 10, 10)$, a aplicação não convergia.  
 Dessa forma, foi desenvolvido um script para encontrar os limites inferiores e superiores que minimizavam o número de iterações necessárias para atingir o critério de convergência.  
 Os valores que melhor otimizam o processo foram os seguintes:
-    * Limitante **superior** do domínio de Broyden: $44$
-    * Limitante **inferior** do domínio de Broyden: $0.00271$
-    * Número de **iterações** para atingir a convergência utilizando os limitantes: $65$  
+* Limitante **superior** do domínio de Broyden: $44$
+* Limitante **inferior** do domínio de Broyden: $0.00271$
+* Número de **iterações** para atingir a convergência utilizando os limitantes: $65$  
 
 Portanto, os dados apresentados nos exercícios abaixo utilizam esses valores como limitantes de tal forma que o método tenha convergência garantida.
 
@@ -279,11 +279,11 @@ A média dos valores é: 0.009072460007155314 segundos
 >c. Comparar os resultados e comentá-los levando em contas as expectativas teóricas.  
 
 O resultado esperado, baseando-se no comportamento assintótico dos métodos, como descrito na seção de _Fundamentação Teórica_, era de que o método de Broyden fosse mais rápido (em tempo) que o método de Newton.  
-Entretanto, isso não se confirmou, devido ao comportamento do método de Broyden gerar a necessidade de limitação do domínio, o que causou uma maior demora para sua conclusão.  
-Comparando os tempos médios de execução:
+Entretanto, isso não se confirmou, devido ao comportamento do método de Broyden gerar a necessidade de limitação do domínio, o que causou uma maior demora para sua conclusão.   
 
-* Tempo médio de Newton: 0.0004876299974663804 segundos
-* Tempo médio de Broyden: 0.009072460007155314 segundos
+Comparando os tempos médios de execução:
+* **Tempo médio de Newton**: 0.0004876299974663804 segundos
+* **Tempo médio de Broyden**: 0.009072460007155314 segundos
 * **Relação**: Broyden tem um tempo médio de aproximadamente **1760% maior** que o tempo médio de Newton.
 
 Além disso, o desvio padrão do tempo de Broyden é também muito maior que o desvio padrão do tempo de Newton (**1220% maior**).  
@@ -300,9 +300,9 @@ Ambos convergiram ao valor esperado com a precisão especificada ($10^{-10}$), e
 Ao calcular a jacobiana por diferenças finitas, necessita-se especificar um tamanho, convencionado como $h$, para ser utilizado nas aproximações das derivadas.  
 Entretanto, o passo $h$ ótimo para uma aplicação depende da função que está sendo utilizada.  
 Visto que o enunciado não recomendou um valor de $h$, mostrou-se necessário simular os processos de Newton e Broyden com difererentes valores de $h$ de modo a entender qual valor reduziria mais o número de iterações.  
-Sendo assim, os valores de $h$ ótimos, para as diferenças finitas de primeira e segunda ordem no método de Newton foram:
-$$h^*_{\text{First order}} = 10^{-6}$$
-$$h^*_{\text{Second order}} = 10^{-6}$$  
+Sendo assim, os valores de $h$ ótimos, para as diferenças finitas de primeira e segunda ordem no método de Newton foram:  
+$$h^*_{\text{First order}} = 10^{-6}$$   
+$$h^*_{\text{Second order}} = 10^{-6}$$    
 
 Esses serão os valores de $h$ ou $step$ utilizados nas simulações do item 2, dado que a jacobiana depende desses valores.
 
