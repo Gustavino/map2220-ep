@@ -170,37 +170,9 @@ truncamento.
 * **Tabela com a solução estimada por iteração até a convergência**:
 
 ```python
-A
-função
-convergiu
-com
-sucesso
-em
-11
-iterações.
-A
-solução
-para
-esse
-sistema
-de
-equações, utilizando
-o
-método
-de
-Newton, é: [3.43023016e-03, 3.13264968e+01, 6.83504014e-02, 8.59528996e-01, 3.69624414e-02].
-Portanto, a
-solução
-encontrada
-é
-igual
-à
-solução
-conhecida
-e
-exposta
-pelo
-enunciado.
+A função convergiu com sucesso em 11 iterações.
+A solução para esse sistema de equações, utilizando o método de Newton, é: [3.43023016e-03, 3.13264968e+01, 6.83504014e-02, 8.59528996e-01, 3.69624414e-02].
+Portanto, a solução encontrada é igual à solução conhecida e exposta pelo enunciado.
 ╒═════════════╤═════════════╤══════════╤════════════╤═══════════╤════════════╕
 │   iteration │         x_1 │      x_2 │        x_3 │       x_4 │        x_5 │
 ╞═════════════╪═════════════╪══════════╪════════════╪═══════════╪════════════╡
@@ -271,32 +243,10 @@ enunciado.
   precisa realizar operações como inicializar variáveis e carregar bibliotecas e módulos.
 
 ```python
-O
-desvio
-padrão
-dos
-valores
-é: 6.301148004540966e-05
-O
-tempo
-máximo
-foi
-de
-0.0007195000071078539
-segundos
-O
-tempo
-mínimo
-foi
-de
-0.00035799999022856355
-segundos
-A
-média
-dos
-valores
-é: 0.0004876299974663804
-segundos
+O desvio padrão dos valores é: 6.301148004540966e-05
+O tempo máximo foi de 0.0007195000071078539 segundos
+O tempo mínimo foi de 0.00035799999022856355 segundos
+A média dos valores é: 0.0004876299974663804 segundos
 ```
 
 ![img.png](assets/1-newton-time.png)
@@ -323,25 +273,8 @@ garantida.
   muito mais iterações que o método de Newton, principalmente devido à limitação do domínio em iterações problemáticas.
 
 ```python  
-    A
-função
-convergiu
-com
-sucesso
-em
-65
-iterações.
-A
-solução
-para
-esse
-sistema
-de
-equações, utilizando
-o
-método
-de
-Newton, é: [3.43023016e-03], [3.13264968e+01], [6.83504014e-02], [8.59528996e-01], [3.69624414e-02].
+    A função convergiu com sucesso em 65 iterações.
+    A solução para esse sistema de equações, utilizando o método de Newton, é: [3.43023016e-03], [3.13264968e+01], [6.83504014e-02], [8.59528996e-01], [3.69624414e-02].
 ```
 
 A expectativa teórica é de que o método de Broyden seja mais **rápido, em tempo,** que o método de Newton, devido à não inversão de matriz
@@ -353,14 +286,7 @@ no processo iterativo. Entretanto, nada é dito sobre a quantidade esperada de i
   processo divirja.
 
 ```python
-A
-função
-convergiu
-com
-sucesso
-em
-65
-iterações.
+A função convergiu com sucesso em 65 iterações.
 ```
 
 ![img.png](assets/1-broyden-residual-norm.png)
@@ -369,32 +295,10 @@ iterações.
   Tempo estimado em 30 iterações do método de Broyden.
 
 ```python
-O
-desvio
-padrão
-dos
-valores
-é: 0.0008317405963524958
-O
-tempo
-máximo
-foi
-de
-0.011727999954018742
-segundos
-O
-tempo
-mínimo
-foi
-de
-0.007786300033330917
-segundos
-A
-média
-dos
-valores
-é: 0.009072460007155314
-segundos
+O desvio padrão dos valores é: 0.0008317405963524958
+O tempo máximo foi de 0.011727999954018742 segundos
+O tempo mínimo foi de 0.007786300033330917 segundos
+A média dos valores é: 0.009072460007155314 segundos
 ```
 
 ![img.png](assets/1-broyden-time.png)
@@ -443,25 +347,8 @@ Esses serão os valores de $h$ ou $step$ utilizados nas simulações do item 2, 
   foi a mesma:
 
 ```python  
-    A
-função
-convergiu
-com
-sucesso
-em
-11
-iterações.
-A
-solução
-para
-esse
-sistema
-de
-equações, utilizando
-o
-método
-de
-Newton, é: [3.43023016e-03], [3.13264968e+01], [6.83504014e-02], [8.59528996e-01], [3.69624414e-02].
+    A função convergiu com sucesso em 11 iterações.
+    A solução para esse sistema de equações, utilizando o método de Newton, é: [3.43023016e-03], [3.13264968e+01], [6.83504014e-02], [8.59528996e-01], [3.69624414e-02].
 ```
 
 Uma tabela também é gerada como saída do programa, no entanto, omitiu-a-se para manter a simplicidade do documento. A tabela pode ser
@@ -474,14 +361,7 @@ rapidamente gerada e examinada utilizando o programa contido nesse repositório.
 
 ```python
 Order: Order.FIRST.
-A
-função
-convergiu
-com
-sucesso
-em
-11
-iterações.
+A função convergiu com sucesso em 11 iterações.
 ╒═════════════╤══════════════╤═══════════════╤═══════════════╤══════════════╤═══════════════╕
 │   iteration │          x_1 │           x_2 │           x_3 │          x_4 │           x_5 │
 ╞═════════════╪══════════════╪═══════════════╪═══════════════╪══════════════╪═══════════════╡
@@ -492,14 +372,7 @@ iterações.
 ...
 
 Order: Order.SECOND.
-A
-função
-convergiu
-com
-sucesso
-em
-11
-iterações.
+A função convergiu com sucesso em 11 iterações.
 ╒═════════════╤══════════════╤═══════════════╤═══════════════╤══════════════╤═══════════════╕
 │   iteration │          x_1 │           x_2 │           x_3 │          x_4 │           x_5 │
 ╞═════════════╪══════════════╪═══════════════╪═══════════════╪══════════════╪═══════════════╡
@@ -517,33 +390,10 @@ Os gráficos serão omitidos por serem idênticos, mas ainda podem ser visualiza
 ```python
 Order: Order.FIRST.
 
-O
-desvio
-padrão
-dos
-valores
-é: 0.0004592098392270207
-segundos
-A
-média
-dos
-valores
-é: 0.004692006664117798
-segundos
-O
-tempo
-máximo
-foi
-de
-0.005797900026664138
-segundos
-O
-tempo
-mínimo
-foi
-de
-0.004005199996754527
-segundos
+O desvio padrão dos valores é: 0.0004592098392270207 segundos
+A média dos valores é: 0.004692006664117798 segundos
+O tempo máximo foi de 0.005797900026664138 segundos
+O tempo mínimo foi de 0.004005199996754527 segundos
 ```
 
 ![img.png](assets/2-newton-first-order-time.png)
@@ -551,33 +401,10 @@ segundos
 ```python
 Order: Order.SECOND.
 
-O
-desvio
-padrão
-dos
-valores
-é: 0.0014413670571175189
-segundos
-A
-média
-dos
-valores
-é: 0.00425199333888789
-segundos
-O
-tempo
-máximo
-foi
-de
-0.009693500003777444
-segundos
-O
-tempo
-mínimo
-foi
-de
-0.003562700003385544
-segundos
+O desvio padrão dos valores é: 0.0014413670571175189 segundos
+A média dos valores é: 0.00425199333888789 segundos
+O tempo máximo foi de 0.009693500003777444 segundos
+O tempo mínimo foi de 0.003562700003385544 segundos
 ```
 
 ![img.png](assets/2-newton-second-order-time.png)
@@ -613,16 +440,11 @@ Para chegar a esses números, foram testados $18$ valores diferentes em cada tip
 1. Primeira ordem:
 
 ```python
-│   iteration │   step
-size │ number
-of
-iterations    │
+│   iteration │   step size │ number of iterations    │
 ╞═════════════╪═════════════╪═════════════════════════╡
-│           0 │      1e-16  │ !ERROR: Singular
-matrix │
+│           0 │      1e-16  │ !ERROR: Singular matrix │
 ├─────────────┼─────────────┼─────────────────────────┤
-│           1 │      1e-15  │ !ERROR: Singular
-matrix │
+│           1 │      1e-15  │ !ERROR: Singular matrix │
 ├─────────────┼─────────────┼─────────────────────────┤
 │           2 │      1e-14  │ 114                     │
 ├─────────────┼─────────────┼─────────────────────────┤
@@ -661,16 +483,11 @@ matrix │
 
 ```python
 ═════════════╤═════════════╤═════════════════════════╕
-│   iteration │   step
-size │ number
-of
-iterations    │
+│   iteration │   step size │ number of iterations    │
 ╞═════════════╪═════════════╪═════════════════════════╡
-│           0 │      1e-16  │ !ERROR: Singular
-matrix │
+│           0 │      1e-16  │ !ERROR: Singular matrix │
 ├─────────────┼─────────────┼─────────────────────────┤
-│           1 │      1e-15  │ !ERROR: Singular
-matrix │
+│           1 │      1e-15  │ !ERROR: Singular matrix │
 ├─────────────┼─────────────┼─────────────────────────┤
 │           2 │      1e-14  │ 148                     │
 ├─────────────┼─────────────┼─────────────────────────┤
@@ -713,51 +530,17 @@ Como dito no item a), as diferenças centrais têm mais informação e, portanto
 1. Primeira ordem:
 
 ```python
-A
-função
-convergiu
-com
-sucesso
-em
-68
-iterações.
+A função convergiu com sucesso em 68 iterações.
 Order: Order.FIRST.
-A
-solução
-para
-esse
-sistema
-de
-equações, utilizando
-o
-método
-de
-Newton, é: [3.43023016e-03], [3.13264968e+01], [6.83504014e-02], [8.59528996e-01], [3.69624414e-02]
+A solução para esse sistema de equações, utilizando o método de Newton, é: [3.43023016e-03], [3.13264968e+01], [6.83504014e-02], [8.59528996e-01], [3.69624414e-02]
 ```
 
 2. Segunda ordem:
 
 ```python  
-A
-função
-convergiu
-com
-sucesso
-em
-65
-iterações.
+A função convergiu com sucesso em 65 iterações.
 Order: Order.SECOND.
-A
-solução
-para
-esse
-sistema
-de
-equações, utilizando
-o
-método
-de
-Newton, é: [3.43023016e-03], [3.13264968e+01], [6.83504014e-02], [8.59528996e-01], [3.69624414e-02]
+A solução para esse sistema de equações, utilizando o método de Newton, é: [3.43023016e-03], [3.13264968e+01], [6.83504014e-02], [8.59528996e-01], [3.69624414e-02]
 ```
 
 * **Resíduo**:  
@@ -777,33 +560,10 @@ Newton, é: [3.43023016e-03], [3.13264968e+01], [6.83504014e-02], [8.59528996e-0
 ```python
 Order: Order.FIRST.
 
-O
-desvio
-padrão
-dos
-valores
-é: 0.0007350003606111309
-segundos
-A
-média
-dos
-valores
-é: 0.009400230005849153
-segundos
-O
-tempo
-máximo
-foi
-de
-0.010994000011123717
-segundos
-O
-tempo
-mínimo
-foi
-de
-0.008306800038553774
-segundos
+O desvio padrão dos valores é: 0.0007350003606111309 segundos
+A média dos valores é: 0.009400230005849153 segundos
+O tempo máximo foi de 0.010994000011123717 segundos
+O tempo mínimo foi de 0.008306800038553774 segundos
 ```
 
 ![img.png](assets/2-broyden-first-order-time.png)
@@ -811,33 +571,10 @@ segundos
 ```python
 Order: Order.SECOND.
 
-O
-desvio
-padrão
-dos
-valores
-é: 0.0006409476804390651
-segundos
-A
-média
-dos
-valores
-é: 0.008798190004502734
-segundos
-O
-tempo
-máximo
-foi
-de
-0.010127699992153794
-segundos
-O
-tempo
-mínimo
-foi
-de
-0.0077892999979667366
-segundos
+O desvio padrão dos valores é: 0.0006409476804390651 segundos
+A média dos valores é: 0.008798190004502734 segundos
+O tempo máximo foi de 0.010127699992153794 segundos
+O tempo mínimo foi de 0.0077892999979667366 segundos
 ```
 
 ![img.png](assets/2-broyden-second-order-time.png)
