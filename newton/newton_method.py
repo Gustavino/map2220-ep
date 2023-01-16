@@ -5,6 +5,8 @@ from constants import NewtonLoggerKeys, MAXIMUM_ITERATIONS
 from utils.Logger import Logger
 
 
+# Processo de encontrar a solução de um sistema não linear. Omitiram-se comentários devido ao nome das variáveis ter sido escolhido
+# de forma autoexplicativa.
 def newton(x: list, function: callable, jacobian: callable, tolerance: float, logger: Logger):
     def log_residual(new_f_of_x):
         if i > 0:

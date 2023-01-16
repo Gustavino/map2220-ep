@@ -5,12 +5,14 @@ from constants import MAXIMUM_ITERATIONS, BroydenLoggerKeys
 from utils.Logger import Logger
 
 
+# todo: comentar
 def broyden(x_0: np.matrix, function: callable, jacobian: callable, tolerance: float, logger: Logger,
             provider: DomainProvider):
     def log_residual(new_v):
         logger.log_value(BroydenLoggerKeys.residual, new_v)
         logger.log_value(BroydenLoggerKeys.residual_norm, np.linalg.norm(new_v, -np.inf))
 
+    # Mantendo as variáveis da solução no domínio do problema
     def keep_in_domain(current_solution: np.matrix):
         maximum = provider.max
         minimum = provider.min
@@ -32,12 +34,14 @@ def broyden(x_0: np.matrix, function: callable, jacobian: callable, tolerance: f
         v = np.matrix(function(approximate_solution)).T
         log_residual(v)
 
+        # Processo de Sherman-Morrison para cálculo da solução do sistema linear
         y = v - w
         z = -A @ y
         p = -s.T @ z
         u_transposed = s.T @ A
         A = A + (1 / p.item(0, 0)) * (s + z) * u_transposed
         s = -A @ v
+        
         approximate_solution = approximate_solution + s
 
         logger.log_value(BroydenLoggerKeys.x, approximate_solution)

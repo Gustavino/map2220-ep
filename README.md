@@ -4,6 +4,61 @@
 
 ### Trabalho Computacional - Métodos numéricos para obtenção de raízes de polinômios
 
+# Como executar
+
+> Requisitos: Python 3.10+, matplotlib, tabulate, numpy, functools, argparse  
+
+#### Comando para configuração do projeto
+    pip install matplotlib tabulate numpy functools argparse  
+
+### Descrição
+Esse projeto foi organizado de tal forma que seja possível executar seus testes e análises através de linha de comando (shell, cmd, PowerShell, zshell, etc.) em grupos de testes / análises. Por exemplo, para executar todos os testes do relatório para o Método de Newton sem diferenças finitas, utiliza-se:  
+```shell
+python main.py --method newton --finite_diff False
+ou
+python main.py -m n -f False
+```
+
+A lista de cenários possíveis é a seguinte:
+1. **Newton** do Item 1, sem diferenças finitas:
+```shell
+python main.py --method newton --finite_diff False
+ou
+python main.py -m n -f False
+```
+2. **Broyden** do Item 1, sem diferenças finitas:
+```shell
+python main.py --method broyden --finite_diff False
+ou
+python main.py -m b -f False
+```
+3. **Newton** do Item 2, com diferenças finitas:
+```shell
+python main.py --method newton --finite_diff True
+ou
+python main.py -m n -f True
+```
+4. **Broyden** do Item 2, com diferenças finitas:
+```shell
+python main.py --method broyden --finite_diff True
+ou
+python main.py -m b -f True
+```
+5. **Todo** o Item 1, Newton e Broyden sem diferenças finitas:
+```shell
+python main.py --item 1
+ou
+python main.py -i 1
+```
+6. **Todo** o Item 2, Newton e Broyden com diferenças finitas:
+```shell
+python main.py --item 2
+ou
+python main.py -i 2
+```
+
+
+# Enunciado
 ## 1. Dado o seguinte sistema de equações não-lineares, resolver os itens abaixo:
 
 $$\begin{gathered} x_1 x_2+x_1-3 x_5=0 \\\\ 2 x_1 x_2+x_1+3 R_{10} x_2^2+x_2 x_3^2+R_7 x_2 x_3 +R_9 x_2 x_4+R_8 x_2-R
